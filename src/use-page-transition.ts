@@ -1,7 +1,7 @@
 'use client'
 
-import { usePageTransitionStore } from '@/page-transition/store'
 import { useRouter } from 'next/navigation'
+import { usePageTransitionStore } from './store'
 
 function usePageTransition() {
   const { startTransition, pageTransitionState } = usePageTransitionStore()

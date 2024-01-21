@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { motion, type HTMLMotionProps, AnimatePresence, AnimatePresenceProps } from 'framer-motion'
+import { motion, type HTMLMotionProps, AnimatePresence, type AnimatePresenceProps } from 'framer-motion'
 import type { ReactHTML, ReactNode } from 'react'
 import React, { useEffect } from 'react'
 import { usePageTransitionStore } from './store'
