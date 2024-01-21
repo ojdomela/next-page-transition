@@ -14,6 +14,7 @@ type PageTransitionProps<TagName extends keyof ReactHTML> = {
 export function PageTransition<TagName extends keyof ReactHTML>({
   children,
   element,
+  ...props
 }: PageTransitionProps<TagName>) {
   const router = useRouter()
   const { isTransitioning, setIsTransitioning, setPath, path } = usePageTransitionInternal()
@@ -28,7 +29,7 @@ export function PageTransition<TagName extends keyof ReactHTML>({
 
   return (
     <AnimatePresence onExitComplete={onExitComplete}>
-      {isTransitioning && <MotionComponent>{children}</MotionComponent>}
+      {isTransitioning && <MotionComponent {...props}>{children}</MotionComponent>}
     </AnimatePresence>
   )
 }
