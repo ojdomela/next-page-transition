@@ -1,4 +1,4 @@
 import { PageTransition } from './page-transition'
-import { usePageTransition } from './use-page-transition'
+import { usePageTransition } from './context'
 
 export { PageTransition, usePageTransition }
