@@ -29,7 +29,7 @@ export function PageTransition<TagName extends keyof ReactHTML>({
 
   return (
     <AnimatePresence onExitComplete={onExitComplete}>
-      {isTransitioning && <MotionComponent {...props}>{children}</MotionComponent>}
+      {!isTransitioning && <MotionComponent {...props}>{children}</MotionComponent>}
     </AnimatePresence>
   )
 }

@@ -1,5 +1,11 @@
 # @ojdom/next-page-transition
 
+## 0.2.0
+
+### Minor Changes
+
+- Fixed breaking boolean condition
+
 ## 0.1.0
 
 ### Minor Changes
