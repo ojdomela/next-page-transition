@@ -1,5 +1,5 @@
 {
-  "name": "@ojdom/test-package",
+  "name": "@ojdom/next-page-transition",
   "license": "MIT",
   "version": "0.0.1",
   "main": "dist/index.js",
@@ -9,13 +9,20 @@
     "access": "public"
   },
   "scripts": {
-    "build": "tsup index.ts --format cjs,esm --dts",
+    "build": "tsup src/index.ts --format cjs,esm --dts",
     "release": "pnpm run build && changeset publish",
     "lint": "tsc"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.1",
+    "@types/react": "^18.2.48",
     "tsup": "^8.0.1",
     "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "framer-motion": "^10.18.0",
+    "next": "^14.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }
