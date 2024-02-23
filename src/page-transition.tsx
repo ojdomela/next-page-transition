@@ -7,33 +7,33 @@ import React, { useEffect } from 'react'
 import { usePageTransitionStore } from './store'
 
 type PageTransitionProps<TagName extends keyof ReactHTML> = {
-  children: ReactNode
+  children?: ReactNode
   element: TagName
   animatePresenceProps?: AnimatePresenceProps
-  pageExitDuration?: number
+  pageExitDuration: number
 } & HTMLMotionProps<TagName>
 
 export function PageTransition<TagName extends keyof ReactHTML>({
   children,
   element,
   animatePresenceProps,
-  pageExitDuration = 0.3,
+  pageExitDuration,
   ...props
 }: PageTransitionProps<TagName>) {
-  const { pageTransitionState, setPageTransitionState, duration, setDuration } = usePageTransitionStore()
-  const { isTransitioning } = pageTransitionState
+  const { pageTransitionState, setPageTransitionState, setNextDuration } = usePageTransitionStore()
+  const { isTransitioning, currentDuration } = pageTransitionState
   const router = useRouter()
 
   useEffect(() => {
-    setDuration(pageExitDuration)
+    setNextDuration(pageExitDuration)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
     const onExitComplete = () => {
-      setDuration(null)
       setPageTransitionState({
         isTransitioning: false,
+        currentDuration: null,
         path: null,
       })
       if (pageTransitionState.path) {
@@ -42,7 +42,7 @@ export function PageTransition<TagName extends keyof ReactHTML>({
     }
 
     if (isTransitioning) {
-      const animationDuration = (duration || 0.3) * 1000
+      const animationDuration = (currentDuration || 0.3) * 1000
 
       const timeoutId = setTimeout(() => {
         onExitComplete()
@@ -50,7 +50,7 @@ export function PageTransition<TagName extends keyof ReactHTML>({
 
       return () => clearTimeout(timeoutId)
     }
-  }, [duration, isTransitioning, pageTransitionState, router, setDuration, setPageTransitionState])
+  }, [pageTransitionState, router, setNextDuration, setPageTransitionState])
 
   const MotionElement = motion(element)
   return (

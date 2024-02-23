@@ -1,5 +1,11 @@
 # @ojdom/next-page-transition
 
+## 0.3.4
+
+### Patch Changes
+
+- Fixed duration race condition on successive page transitions
+
 ## 0.3.3
 
 ### Patch Changes
